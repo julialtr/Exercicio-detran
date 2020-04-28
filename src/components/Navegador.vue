@@ -2,9 +2,8 @@
   <div id="elemento">
         <h1 id="text">Detran</h1>
         <h3 id="text2">Placa: </h3>
-        <input id="placeholder" type="text" placeholder="" v-model="placa1">
+        <input id="placeholder" type="text" placeholder="" v-model="placa1" maxlength="8">
         <button id="button" @click="validar">OK</button>
-        <h5 id="text3" v-if="existe">Não há infrações para este veículo</h5>
   </div>
 </template>
 
@@ -13,24 +12,15 @@ const axios = require("axios");
 export default {
     data: function(){
         return{
-            veiculos: [],
-            placa1: '',
-            existe: false
+            placa1: ''
         }
     }, methods:{
         validar: function(){
-            return this.veiculos.filter(p => {
-                if (p.placa == this.placa1) {
-                    this.$router.push({name: 'Infracoes', params: {placa1: this.placa}})
-                }
-                else{
-                    this.existe = true
-                }
-            })
-        
+            this.$store.state.infracoesVeiculo = this.$store.state.veiculos.filter(p => p.placa == this.placa1)
+            this.$router.push("Infracoes")
         }
     }, mounted(){          
-            axios.get("http://localhost:8080/veiculos.json").then(v => this.veiculos = v.data)
+            axios.get("http://localhost:8080/veiculos.json").then(v => this.$store.state.veiculos = v.data)
 }
 }
 </script>
@@ -38,7 +28,7 @@ export default {
 <style>
  #elemento{
         width: 260px;
-        height: 120px;
+        height: 90px;
         background-color: rgba(23, 59, 6, 0.815);
         display: flex;
         flex-wrap: wrap;

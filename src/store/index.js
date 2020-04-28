@@ -5,14 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    componentes: [{
-      titulo: 'Home'
-    }, {
-      titulo: 'Infracoes'
-    }, {
-      titulo: 'Main'
-    }
-  ]
+      veiculos: [],
+      infracoesVeiculo: []
   },
   mutations: {
   },

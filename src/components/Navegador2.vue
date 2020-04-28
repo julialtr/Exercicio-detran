@@ -1,55 +1,37 @@
 <template>
-  <div id="elementos">
-      <h4>Data: </h4>
-      <input class="data" type="date" placeholder="" v-model="data1">
+  <div>
+      <div id="elementos" v-for="(infracao, index) in infracoes" :key="index">
+        <h4>Data: </h4>
+      <input id="data" type="text" :value="infracao.dados_infracao.data">
       <h4>Hora: </h4>
-      <input class="hora" type="time" placeholder="" v-model="hora1">
+      <input id="hora" type="text" :value="infracao.dados_infracao.hora">
       <h4>Local: </h4>
-      <input class="local" type="text" placeholder="" v-model="localidade1">
+      <input id="local" type="text" :value="infracao.localidade">
       <h4>Tipo: </h4>
-      <input class="tipo" type="text" placeholder="" v-model="tipo1">
-      <h4>Valor: </h4>
-      <input class="valor" type="number" placeholder="" v-model="valor1">
-      <h4 id="texto" v-if="infracaoVelocidade">Velocidade Máxima: {{velocidademax}}km/h</h4>
+      <input id="tipo" type="text" :value="infracao.dados_infracao.tipo">
+      <h4  v-if="infracao.dados_infracao.tipo == 'VELOCIDADE'"> Valor: </h4>
+      <input id="valor" v-if="infracao.dados_infracao.tipo == 'VELOCIDADE'" type="number" :value="infracao.dados_infracao.valor">
+      <h4 id="texto" v-if="infracao.dados_infracao.tipo == 'VELOCIDADE'">Velocidade Máxima: {{infracao.dados_infracao.vel_maxima}}km/h</h4>
       <button id="botao" @click="voltar">Nova Consulta</button>
+      </div>
   </div>
 </template>
 
 <script>
 export default {
- data: function(){
-        return{
-            // infracaoVelocidade: true
-        }
-    },  
     computed: {
-        placa: function(){
-            return this.$route.params.placa
-        },
-        carregarPlace(){
-            
-             return this.placa.filter(v => {
-                if (v.placa == this.placa) {
-                    this.data1 = v.data
-                    this.hora1 = v.hora
-                    this.localidade1 = v.localidade
-                    this.tipo1 = v.tipo
-                    this.valor1 = v.valor
-                    this.velocidademax = v.velocidade
-                }
-             })
-        }
-        
+       infracoes(){
+           return this.$store.state.infracoesVeiculo
+       }
     },
     methods:{
         voltar: function(){
             this.$router.push('/')
-        },
-        //verificacao: function(){
-           // if(this.tipo == 'Velocidade'){
-             //   infracaoVelocidade = true
-           // }
-       // }
+        }
+    }, mounted(){
+        if (this.$store.state.infracoesVeiculo.length == 0) {
+            this.$router.push('/')
+        }
     }
 }
 </script>
@@ -66,7 +48,7 @@ export default {
         border-radius: 10px;
         margin: auto;
     }
-    .data{
+    #data{
         width: 130px;
         height: 20px;
         background-color: rgba(23, 59, 6, 0.815);
@@ -76,7 +58,7 @@ export default {
         text-align: center;
         color: white;
     }
-    .hora{
+    #hora{
         width: 70px;
         height: 20px;
         background-color: rgba(23, 59, 6, 0.815);
@@ -85,7 +67,8 @@ export default {
         margin: 17px 5px 0 5px;
         text-align: center;
         color: white;
-    }.local{
+    }
+    #local{
         width: 250px;
         height: 20px;
         background-color: rgba(23, 59, 6, 0.815);
@@ -94,7 +77,8 @@ export default {
         margin: 17px 5px 0 5px;
         text-align: center;
         color: white;
-    }.tipo{
+    }
+    #tipo{
         width: 130px;
         height: 20px;
         background-color: rgba(23, 59, 6, 0.815);
@@ -103,7 +87,8 @@ export default {
         margin: 17px 5px 0 5px;
         text-align: center;
         color: white;
-    }.valor{
+    }
+    #valor{
         width: 70px;
         height: 20px;
         background-color: rgba(23, 59, 6, 0.815);
