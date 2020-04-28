@@ -1,0 +1,52 @@
+[
+            {
+                "placa": "MBL 5544",
+                "localidade": "SC-BLUMENAU",
+                "dados infracao": {
+                    "data": "20/01/2019 ",
+                    "hora": "09:43:22",
+                    "tipo": "VELOCIDADE",
+                    "valor": 190,
+                    "vel maxima": 80
+                }
+            },
+            {
+                "placa": "AAB 1327",
+                "localidade": "SP-SÃO PAULO",
+                "dados infracao": {
+                    "data": "16/03/2018",
+                    "hora": "23:22:22",
+                    "tipo": "FAROL VERMELHO"
+                }
+            },
+            {
+                "placa": "CAV 3548",
+                "localidade": "PE-RECIFE",
+                "dados infracao": {
+                    "data": "20/01/2019 ",
+                    "hora": "12:11:22",
+                    "tipo": "ULTRAPASSAGEM PROIBIDA"
+                }
+            },
+            {
+                "placa": "PPR 4800",
+                "localidade": "GO-GOIANIA",
+                "dados infracao": {
+                    "data": "20/12/2018",
+                    "hora": "14:01:22",
+                    "tipo": "ESTACIONAR EM LOCAL PROIBIDO"
+                }
+            },
+            {
+                "placa": "ASA 1122",
+                "localidade": "SP-MOGI DAS CRUZES",
+                "dados infracao": {
+                    "data": "20/01/2019 ",
+                    "hora": "15:21:22",
+                    "tipo": "VELOCIDADE",
+                    "valor": 90,
+                    "vel maxima": 80
+                }
+            }
+        
+    ]

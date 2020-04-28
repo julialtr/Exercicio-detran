@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 import Navegador from '../components/Navegador.vue'
 export default {
 components:{
